@@ -29,6 +29,7 @@ def train(opt):
     cuda = torch.device('cuda:%d' % opt.gpu_id)
 
     train_dataset = TrainDataset(opt, phase='train')
+
     test_dataset = TrainDataset(opt, phase='test')
 
     projection_mode = train_dataset.projection_mode
@@ -180,4 +181,9 @@ def train(opt):
 
 
 if __name__ == '__main__':
+    opt.dataroot=ROOT_PATH+'/train_data/'
+    opt.results_path=ROOT_PATH+'/results/'
+    opt.checkpoints_path = ROOT_PATH+'/checkpoints/'
+    opt.batch_size = 6
+    opt.num_views = 2
     train(opt)

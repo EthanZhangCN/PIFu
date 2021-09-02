@@ -188,4 +188,13 @@ def train_color(opt):
                 train_dataset.is_train = True
 
 if __name__ == '__main__':
+    opt.dataroot=ROOT_PATH+'/train_data/'
+    opt.results_path=ROOT_PATH+'/results/'
+    opt.checkpoints_path = ROOT_PATH+'/checkpoints/'
+    opt.num_sample_inout = 0
+    opt.num_sample_color = 5000
+    opt.sigma = 0.1
+    opt.random_flip=True
+    opt.random_scale = True
+    opt.random_trans = True
     train_color(opt)

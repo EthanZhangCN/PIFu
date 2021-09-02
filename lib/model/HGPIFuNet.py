@@ -79,8 +79,9 @@ class HGPIFuNet(BasePIFuNet):
         '''
         if labels is not None:
             self.labels = labels
-
+            
         xyz = self.projection(points, calibs, transforms)
+
         xy = xyz[:, :2, :]
         z = xyz[:, 2:3, :]
 
@@ -101,6 +102,11 @@ class HGPIFuNet(BasePIFuNet):
                 point_local_feat_list.append(tmpx_local_feature)
 
             point_local_feat = torch.cat(point_local_feat_list, 1)
+
+            if self.num_views>1 and self.opt.batch_size >= self.num_views and in_img.shape[0]>=self.opt.batch_size:
+                for i in range(self.opt.batch_size):
+                    in_img[i,:]=in_img[i*self.num_views:(i+1)*self.num_views,:].float().mean(dim=0)
+                in_img = in_img[0:self.opt.batch_size,:]
 
             # out of image plane is always set to 0
             pred = in_img[:,None].float() * self.surface_classifier(point_local_feat)

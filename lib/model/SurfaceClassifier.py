@@ -43,9 +43,9 @@ class SurfaceClassifier(nn.Module):
         :param xy: [Bx3xN] tensor of (x,y) coodinates in the image plane
         :return: [BxC_outxN] tensor of features extracted at the coordinates
         '''
-
         y = feature
         tmpy = feature
+
         for i, f in enumerate(self.filters):
             if self.no_residual:
                 y = self._modules['conv' + str(i)](y)
@@ -61,6 +61,7 @@ class SurfaceClassifier(nn.Module):
                 y = y.view(
                     -1, self.num_views, y.shape[1], y.shape[2]
                 ).mean(dim=1)
+
                 tmpy = feature.view(
                     -1, self.num_views, feature.shape[1], feature.shape[2]
                 ).mean(dim=1)

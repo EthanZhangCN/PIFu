@@ -135,7 +135,7 @@ def testPRT(dir_path, n=40):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-i', '--input', type=str, default='/home/shunsuke/Downloads/rp_dennis_posed_004_OBJ')
+    parser.add_argument('-i', '--input', type=str, default='/home/zhizizhang/Documents/PIFu/models/rp_mei_posed_001_OBJ')
     parser.add_argument('-n', '--n_sample', type=int, default=40, help='squared root of number of sampling. the higher, the more accurate, but slower')
     args = parser.parse_args()
 

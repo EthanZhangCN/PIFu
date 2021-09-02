@@ -106,6 +106,24 @@ class Evaluator:
 
 
 if __name__ == '__main__':
+    opt.name='pifu_demo'
+    opt.batch_size=2
+    opt.mlp_dim=[257,1024,512,256,128,1]
+    opt.mlp_dim_color = [513,1024,512,256,128,3]
+    opt.num_stack = 4
+    opt.num_hourglass = 2
+    opt.resolution = 256
+    opt.hg_down='ave_pool'
+    opt.norms ='group'
+    opt.norm_color = 'group'
+
+    opt.load_netG_checkpoint_path = ROOT_PATH+'/checkpoints/net_G'
+    opt.load_netC_checkpoint_path = ROOT_PATH+'/checkpoints/net_C'
+    opt.gpu_id = 0
+    # opt.checkpoints_path = ROOT_PATH+'/checkpoints/'
+    opt.test_folder_path = ROOT_PATH+'/sample_images'
+    opt.results_path = ROOT_PATH+'/results'
+
     evaluator = Evaluator(opt)
 
     test_images = glob.glob(os.path.join(opt.test_folder_path, '*'))
