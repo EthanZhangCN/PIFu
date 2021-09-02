@@ -87,6 +87,7 @@ def getSHCoeffs(order, phi, theta):
 def computePRT(mesh_path, n, order):
     mesh = trimesh.load(mesh_path, process=False)
     vectors_orig, phi, theta = sampleSphericalDirections(n)
+
     SH_orig = getSHCoeffs(order, phi, theta)
 
     w = 4.0 * math.pi / (n*n)
@@ -135,8 +136,8 @@ def testPRT(dir_path, n=40):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-i', '--input', type=str, default='/home/zhizizhang/Documents/PIFu/models/rp_mei_posed_001_OBJ')
-    parser.add_argument('-n', '--n_sample', type=int, default=40, help='squared root of number of sampling. the higher, the more accurate, but slower')
+    parser.add_argument('-i', '--input', type=str, default='/home/zhizizhang/Documents/PIFu/models/rp_dennis_posed_004_OBJ')
+    parser.add_argument('-n', '--n_sample', type=int, default=10, help='squared root of number of sampling. the higher, the more accurate, but slower')
     args = parser.parse_args()
 
-    testPRT(args.input)
+    testPRT(args.input,args.n_sample)
