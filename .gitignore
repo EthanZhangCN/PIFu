@@ -1,1 +1,6 @@
 checkpoints/*
+*.pyc
+models/*
+results/*
+train_data/*
+
